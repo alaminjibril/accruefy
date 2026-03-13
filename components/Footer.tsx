@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import AnimatedButton from "./AnimatedButton";
 
 const navColumns = [
   {
@@ -25,9 +24,9 @@ const navColumns = [
   {
     heading: "Inner page",
     links: [
-      { label: "Service details", href: "/services/details" },
+      { label: "Service details", href: "/services/bookkeeping-and-reporting" },
       { label: "Team", href: "/team" },
-      { label: "Team details", href: "/team/details" },
+      { label: "Team details", href: "/team/ava-moore" },
     ],
   },
   {
@@ -43,7 +42,7 @@ const contactItems = [
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-        <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+        <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
       </svg>
     ),
     label: "parlica01@email.com",
@@ -52,7 +51,7 @@ const contactItems = [
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.58 1 1 0 01-.25 1.01l-2.2 2.2z" />
+        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.47 11.47 0 003.58.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.47 11.47 0 00.57 3.58 1 1 0 01-.25 1.01l-2.2 2.2z"/>
       </svg>
     ),
     label: "415-201-2194",
@@ -61,7 +60,7 @@ const contactItems = [
   {
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z" />
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/>
       </svg>
     ),
     label: "7490 Columbia Avenue",
@@ -75,7 +74,7 @@ const socialLinks = [
     href: "https://instagram.com",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-        <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10A5 5 0 0112 7zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-.75a.875.875 0 110 1.75.875.875 0 010-1.75z" />
+        <path d="M7.75 2h8.5A5.75 5.75 0 0122 7.75v8.5A5.75 5.75 0 0116.25 22h-8.5A5.75 5.75 0 012 16.25v-8.5A5.75 5.75 0 017.75 2zm0 1.5A4.25 4.25 0 003.5 7.75v8.5A4.25 4.25 0 007.75 20.5h8.5a4.25 4.25 0 004.25-4.25v-8.5A4.25 4.25 0 0016.25 3.5h-8.5zM12 7a5 5 0 110 10A5 5 0 0112 7zm0 1.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7zm5.25-.75a.875.875 0 110 1.75.875.875 0 010-1.75z"/>
       </svg>
     ),
   },
@@ -84,7 +83,7 @@ const socialLinks = [
     href: "https://x.com",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L2.25 2.25H8.08l4.253 5.622 5.912-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
       </svg>
     ),
   },
@@ -93,7 +92,7 @@ const socialLinks = [
     href: "https://linkedin.com",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-        <path d="M4.98 3.5A2.49 2.49 0 012.5 6a2.49 2.49 0 002.48 2.5A2.49 2.49 0 007.46 6 2.49 2.49 0 004.98 3.5zM2.5 21.5h5V9.5h-5v12zm7.5 0h5v-6.5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v6.5h5v-7c0-3.87-3.13-5-5-5-1.93 0-3.5.78-4.5 2V9.5h-5.5v12z" />
+        <path d="M4.98 3.5A2.49 2.49 0 012.5 6a2.49 2.49 0 002.48 2.5A2.49 2.49 0 007.46 6 2.49 2.49 0 004.98 3.5zM2.5 21.5h5V9.5h-5v12zm7.5 0h5v-6.5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v6.5h5v-7c0-3.87-3.13-5-5-5-1.93 0-3.5.78-4.5 2V9.5h-5.5v12z"/>
       </svg>
     ),
   },
@@ -102,7 +101,7 @@ const socialLinks = [
     href: "https://facebook.com",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-        <path d="M22 12a10 10 0 10-11.563 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988A10.003 10.003 0 0022 12z" />
+        <path d="M22 12a10 10 0 10-11.563 9.878V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988A10.003 10.003 0 0022 12z"/>
       </svg>
     ),
   },
@@ -119,7 +118,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-12">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/logo_1.svg"
+              src="/logo.png"
               alt="Accruefy logo"
               width={36}
               height={36}
@@ -184,12 +183,12 @@ export default function Footer() {
           <p className="text-xs text-gray-500 flex items-center gap-1 flex-wrap">
             Powered by
             <span className="font-semibold text-gray-700 flex items-center gap-1 mx-1">
-              <svg viewBox="0 0 24 24" fill="#1a3d4f" className="w-3.5 h-3.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>
+              <svg viewBox="0 0 24 24" fill="#1a3d4f" className="w-3.5 h-3.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
               Framer
             </span>
             Designed by
             <span className="font-semibold text-gray-700 flex items-center gap-1 mx-1">
-              <svg viewBox="0 0 24 24" fill="#1a3d4f" className="w-3.5 h-3.5"><circle cx="12" cy="12" r="10" /></svg>
+              <svg viewBox="0 0 24 24" fill="#1a3d4f" className="w-3.5 h-3.5"><circle cx="12" cy="12" r="10"/></svg>
               WebOcean
             </span>
           </p>

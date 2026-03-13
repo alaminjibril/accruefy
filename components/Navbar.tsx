@@ -48,7 +48,9 @@ export default function Navbar() {
 
         {/* CTA Button — desktop */}
         <div className="hidden md:block">
-          <AnimatedButton>Contact Us</AnimatedButton>
+          <Link href="/contact">
+            <AnimatedButton>Contact Us</AnimatedButton>
+          </Link>
         </div>
 
         {/* Hamburger */}
@@ -76,7 +78,9 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <AnimatedButton className="w-full mt-2">Contact Us</AnimatedButton>
+          <Link href="/contact" onClick={() => setMenuOpen(false)}>
+            <AnimatedButton className="w-full mt-2">Contact Us</AnimatedButton>
+          </Link>
         </div>
       )}
     </nav>

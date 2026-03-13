@@ -95,7 +95,7 @@ export default function Testimonials() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Heading */}
-        <h2 className="text-3xl sm:text-4xl font-bold text-black text-center mb-10 leading-tight">
+        <h2 className="text-3xl sm:text-4xl font-semibold text-black text-center mb-10 leading-tight">
           Client testimonials and success stories
         </h2>
 

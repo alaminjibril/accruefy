@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import AnimatedButton from "./AnimatedButton";
+import { motion } from "framer-motion";
 
 // ── Star rating ────────────────────────────────────────────────────────────
 function Stars({ count = 5 }: { count?: number }) {
@@ -86,43 +87,61 @@ function ProgressStatsCard() {
   );
 }
 
+// ── Shared easing ──────────────────────────────────────────────────────────
+const ease = [0.25, 0.1, 0.25, 1] as const;
+
 // ── Hero ───────────────────────────────────────────────────────────────────
 export default function Hero() {
   return (
-    <section className="bg-[#f0ece4] min-h-[85vh] w-full">
+    <section className="bg-[#f0ece4] min-h-[85vh] w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
 
-        {/* LEFT COLUMN */}
+        {/* ── LEFT COLUMN — staggered fade up ── */}
         <div className="flex-1 flex flex-col gap-6 lg:max-w-[50%]">
-          <h1 className="text-4xl lg:text-5xl font-semibold text-black leading-tight tracking-tight">
-            Simplifying accounting for your business
-          </h1>
 
-          <p className="text-base text-gray-600 max-w-md leading-relaxed">
+          {/* H1 floats up */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease, delay: 0.1 }}
+            className="text-4xl lg:text-5xl font-semibold text-black leading-tight tracking-tight"
+          >
+            Simplifying accounting for your business
+          </motion.h1>
+
+          {/* Paragraph floats up */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease, delay: 0.25 }}
+            className="text-base text-gray-600 max-w-md leading-relaxed"
+          >
             We are transforming numbers into financial success with expert-led
             strategies, personalized support, and unmatched precision.
-          </p>
+          </motion.p>
 
-          <div>
+          {/* Button floats up */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease, delay: 0.4 }}
+          >
             <AnimatedButton className="px-7 py-3">Contact Us</AnimatedButton>
-          </div>
+          </motion.div>
 
-          {/* Info Cards Row */}
-          <div className="flex flex-wrap gap-4 mt-4">
+          {/* Info cards float up */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease, delay: 0.55 }}
+            className="flex flex-wrap gap-4 mt-4"
+          >
             {/* Brand Rating Card */}
             <div className="bg-white rounded-2xl shadow-md px-4 py-3 flex flex-col gap-1.5 min-w-[150px]">
-              {/* Top: logo + name */}
               <div className="flex items-center gap-1.5">
-                <Image
-                  src="/logo_1.svg"
-                  alt="Accruefy logo"
-                  width={22}
-                  height={22}
-                  className="rounded-full object-contain"
-                />
+                <Image src="/logo_1.svg" alt="Accruefy logo" width={22} height={22} className="rounded-full object-contain" />
                 <span className="text-sm font-bold text-black">Accruefy</span>
               </div>
-              {/* Bottom: stars + rating */}
               <div className="flex items-center gap-2">
                 <Stars count={4} />
                 <p className="text-xs text-gray-500">5.0/4.50</p>
@@ -139,15 +158,20 @@ export default function Hero() {
                 <p className="text-sm font-bold text-black">441-9189 x9761</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        {/* RIGHT COLUMN */}
+        {/* ── RIGHT COLUMN ── */}
         <div className="flex-1 relative flex justify-center items-center lg:max-w-[50%] w-full">
-          {/* Outer frame — beige bg shows around the image as padding */}
           <div className="relative w-full max-w-[500px] p-6">
-            {/* Image */}
-            <div className="rounded-lg overflow-hidden w-full shadow-lg">
+
+            {/* Image slides in from the right first */}
+            <motion.div
+              initial={{ opacity: 0, x: 80 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.75, ease, delay: 0.05 }}
+              className="rounded-lg overflow-hidden w-full shadow-lg"
+            >
               <Image
                 src="/hero-businesswoman.png"
                 alt="Professional businesswoman at desk"
@@ -156,17 +180,28 @@ export default function Hero() {
                 className="object-cover w-full h-[420px] lg:h-[480px]"
                 priority
               />
-            </div>
+            </motion.div>
 
-            {/* Pie chart — bleeds left outside the image */}
-            <div className="absolute left-[-60px] top-1/2 -translate-y-1/2 z-20 drop-shadow-xl">
+            {/* Pie chart — floats in from left after image */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.65, ease, delay: 0.55 }}
+              className="absolute left-[-60px] top-1/2 -translate-y-1/2 z-20 drop-shadow-xl"
+            >
               <PieStatsCard />
-            </div>
+            </motion.div>
 
-            {/* Progress card — bleeds bottom-right outside the image */}
-            <div className="absolute bottom-[40px] right-[-10px] z-20">
+            {/* Progress card — floats in from right after image */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.65, ease, delay: 0.7 }}
+              className="absolute bottom-[40px] right-[-10px] z-20"
+            >
               <ProgressStatsCard />
-            </div>
+            </motion.div>
+
           </div>
         </div>
 

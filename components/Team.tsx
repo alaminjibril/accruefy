@@ -100,7 +100,7 @@ export default function Team() {
     <section className="w-full py-12 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <h2 className="text-2xl sm:text-3xl font-bold text-black text-center mb-10 leading-tight max-w-xs mx-auto">
+        <h2 className="text-2xl sm:text-2xl font-semibold text-black text-center mb-10 leading-tight max-w-xs mx-auto">
           Your dedicated financial professionals
         </h2>
 

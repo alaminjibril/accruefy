@@ -189,7 +189,7 @@ function CustomPackageForm() {
 export default function PricingDetails() {
     return (
         <section className="w-full bg-white py-16 lg:py-20">
-            <div className="max-w-5xl mx-auto px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
                 <h2 className="text-3xl sm:text-4xl font-bold text-black text-center mb-14">
                     What we offer on every package
                 </h2>

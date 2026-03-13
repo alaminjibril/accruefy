@@ -58,7 +58,7 @@ export default function Approaches(): ReactElement {
 
       {/* Header */}
       <div className="text-center mb-12 px-4">
-        <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
+        <h2 className="text-3xl lg:text-4xl font-semibold text-gray-900 leading-tight mb-4">
           Smart approaches to financial success
         </h2>
         <p className="text-sm text-gray-500 max-w-xl mx-auto leading-relaxed">

@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import AnimatedButton from "./AnimatedButton";
 
 const services = [
     {
         id: 0,
         title: "Bookkeeping and Reporting",
+        slug: "bookkeeping-and-reporting",
         description: "We keep your financial records accurate and provide detailed reports to support informed decisions.",
         image: "/services-1.avif",
         icon: (active: boolean) => (
@@ -22,6 +24,7 @@ const services = [
     {
         id: 1,
         title: "Cash Flow Management",
+        slug: "cash-flow-management",
         description: "We optimize cash flow to ensure your business remains financially stable and continues to grow.",
         image: "/services-2.avif",
         icon: (active: boolean) => (
@@ -34,6 +37,7 @@ const services = [
     {
         id: 2,
         title: "Personalized Tax Solutions",
+        slug: "personalized-tax-solutions",
         description: "Tailored tax strategies to maximize savings and ensure complete compliance during tax season.",
         image: "/services-3.avif",
         icon: (active: boolean) => (
@@ -47,6 +51,7 @@ const services = [
     {
         id: 3,
         title: "Tax Filing Assistance",
+        slug: "tax-filing-assistance",
         description: "Accurate, timely tax filing services to meet deadlines and minimize any potential penalties.",
         image: "/services-4.avif",
         icon: (active: boolean) => (
@@ -59,6 +64,7 @@ const services = [
     {
         id: 4,
         title: "Financial Consulting",
+        slug: "financial-consulting",
         description: "Expert advice to help you make smart financial decisions and scale your business effectively.",
         image: "/services-5.avif",
         icon: (active: boolean) => (
@@ -73,8 +79,9 @@ const services = [
     {
         id: 5,
         title: "Custom Payroll Solutions",
+        slug: "custom-payroll-solutions",
         description: "We manage payroll end-to-end ensuring accuracy, compliance, and timely payments for your team.",
-        image: "/services-5.avif",
+        image: "/services-6.avif",
         icon: (active: boolean) => (
             <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke={active ? "white" : "#1a3d4f"} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="8" cy="8" r="3" />
@@ -87,13 +94,15 @@ const services = [
     },
 ];
 
-function ArrowBtn() {
+function ArrowBtn({ slug }: { slug: string }) {
     return (
-        <div className="w-9 h-9 rounded-full bg-[#1a3d4f] flex items-center justify-center flex-shrink-0 cursor-pointer hover:bg-[#0f2a38] transition-colors">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-                <path d="M9 5l7 7-7 7" />
-            </svg>
-        </div>
+        <Link href={`/services/${slug}`}>
+            <div className="w-9 h-9 rounded-full bg-[#1a3d4f] flex items-center justify-center flex-shrink-0 cursor-pointer hover:bg-[#0f2a38] transition-colors">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M9 5l7 7-7 7" />
+                </svg>
+            </div>
+        </Link>
     );
 }
 
@@ -144,7 +153,7 @@ export default function Services() {
 
                 {/* TOP ROW */}
                 <div className="flex items-start justify-between mb-8 gap-4">
-                    <h2 className="text-2xl font-bold text-black leading-tight" style={{ maxWidth: 280 }}>
+                    <h2 className="text-2xl font-semibold text-black leading-tight" style={{ maxWidth: 280 }}>
                         Achieving financial clarity through services
                     </h2>
                     <AnimatedButton className="rounded-full flex-shrink-0 mt-1">
@@ -152,7 +161,7 @@ export default function Services() {
                     </AnimatedButton>
                 </div>
 
-                {/* DESKTOP LAYOUT (lg+) */}
+                {/* DESKTOP LAYOUT */}
                 <div className="hidden lg:flex items-stretch gap-6">
 
                     {/* Cards column */}
@@ -177,7 +186,7 @@ export default function Services() {
                                     </p>
                                     <div className="flex items-center justify-between">
                                         <div className="flex-1 mr-4 h-px bg-gray-100" />
-                                        <ArrowBtn />
+                                        <ArrowBtn slug={prev.slug} />
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +205,7 @@ export default function Services() {
                                         <div className="absolute inset-0 bg-gray-200 rounded-full" />
                                         <div className="absolute left-0 top-0 h-px bg-[#1a3d4f] rounded-full" style={{ width: "35%" }} />
                                     </div>
-                                    <ArrowBtn />
+                                    <ArrowBtn slug={curr.slug} />
                                 </div>
                             </div>
 
@@ -251,13 +260,9 @@ export default function Services() {
                     </div>
                 </div>
 
-                {/* TABLET LAYOUT (md–lg): active card + image side by side, service list below */}
+                {/* TABLET LAYOUT */}
                 <div className="hidden md:flex lg:hidden flex-col gap-4">
-
-                    {/* Top: active card + image side by side */}
                     <div className="flex gap-4" style={{ height: 280 }}>
-
-                        {/* Active service card */}
                         <div className="bg-white rounded-2xl flex-1 flex flex-col justify-between" style={{ padding: "20px 22px" }}>
                             <div className="flex items-center gap-3">
                                 <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
@@ -271,37 +276,17 @@ export default function Services() {
                                     <div className="absolute inset-0 bg-gray-200 rounded-full" />
                                     <div className="absolute left-0 top-0 h-px bg-[#1a3d4f] rounded-full" style={{ width: "35%" }} />
                                 </div>
-                                <ArrowBtn />
+                                <ArrowBtn slug={curr.slug} />
                             </div>
                         </div>
-
-                        {/* Image with icon strip */}
                         <div className="relative rounded-2xl overflow-hidden flex-1">
-                            <Image
-                                key={active}
-                                src={curr.image}
-                                alt={curr.title}
-                                fill
-                                className="object-cover"
-                                style={{ animation: "svcImgIn 0.45s ease forwards" }}
-                                priority
-                            />
+                            <Image key={active} src={curr.image} alt={curr.title} fill className="object-cover"
+                                style={{ animation: "svcImgIn 0.45s ease forwards" }} priority />
                             <div className="absolute left-0 top-1/2 -translate-y-1/2 z-10">
                                 <div className="bg-[#f0ece4] flex flex-col items-center" style={{ gap: 6, padding: "10px 7px" }}>
                                     {services.map((svc, i) => (
-                                        <button
-                                            key={svc.id}
-                                            onClick={() => goTo(i)}
-                                            aria-label={svc.title}
-                                            style={{
-                                                width: 26, height: 26,
-                                                borderRadius: "50%",
-                                                background: i === active ? "#1a3d4f" : "#efefef",
-                                                display: "flex", alignItems: "center", justifyContent: "center",
-                                                flexShrink: 0, border: "none", cursor: "pointer",
-                                                transition: "background 0.2s",
-                                            }}
-                                        >
+                                        <button key={svc.id} onClick={() => goTo(i)} aria-label={svc.title}
+                                            style={{ width: 26, height: 26, borderRadius: "50%", background: i === active ? "#1a3d4f" : "#efefef", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, border: "none", cursor: "pointer", transition: "background 0.2s" }}>
                                             {svc.icon(i === active)}
                                         </button>
                                     ))}
@@ -309,56 +294,28 @@ export default function Services() {
                             </div>
                         </div>
                     </div>
-
-                    {/* Bottom: next service card (peek) */}
-                    <div
-                        className="bg-white rounded-2xl px-5 py-4 flex items-center gap-3 cursor-pointer hover:shadow-sm transition-shadow"
-                        onClick={() => goTo(nextIdx)}
-                    >
-                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                            {next.icon(false)}
-                        </div>
+                    <div className="bg-white rounded-2xl px-5 py-4 flex items-center gap-3 cursor-pointer hover:shadow-sm transition-shadow" onClick={() => goTo(nextIdx)}>
+                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">{next.icon(false)}</div>
                         <span className="text-sm text-gray-400 font-medium flex-1">{next.title}</span>
-                        <ArrowBtn />
+                        <ArrowBtn slug={next.slug} />
                     </div>
-
-                    {/* Dot indicators */}
                     <div className="flex items-center justify-center gap-3 pt-1">
                         {services.map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => goTo(i)}
-                                style={{
-                                    width: i === active ? 28 : 8, height: 8,
-                                    borderRadius: 999,
-                                    background: i === active ? "#1a3d4f" : "#d1d5db",
-                                    border: "none", cursor: "pointer",
-                                    transition: "all 0.3s ease",
-                                }}
-                            />
+                            <button key={i} onClick={() => goTo(i)}
+                                style={{ width: i === active ? 28 : 8, height: 8, borderRadius: 999, background: i === active ? "#1a3d4f" : "#d1d5db", border: "none", cursor: "pointer", transition: "all 0.3s ease" }} />
                         ))}
                     </div>
                 </div>
 
-                {/* MOBILE LAYOUT (< md) */}
+                {/* MOBILE LAYOUT */}
                 <div className="flex md:hidden flex-col gap-4">
                     <div className="relative w-full rounded-2xl overflow-hidden" style={{ height: 260 }}>
-                        <Image
-                            key={active}
-                            src={curr.image}
-                            alt={curr.title}
-                            fill
-                            className="object-cover"
-                            style={{ animation: "svcImgIn 0.45s ease forwards" }}
-                            priority
-                        />
+                        <Image key={active} src={curr.image} alt={curr.title} fill className="object-cover"
+                            style={{ animation: "svcImgIn 0.45s ease forwards" }} priority />
                     </div>
-
                     <div className="bg-white rounded-2xl p-5 flex flex-col gap-4">
                         <div className="flex items-center gap-3">
-                            <div className="w-11 h-11 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                                {curr.icon(false)}
-                            </div>
+                            <div className="w-11 h-11 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">{curr.icon(false)}</div>
                             <h3 className="text-[15px] font-semibold text-black">{curr.title}</h3>
                         </div>
                         <p className="text-sm text-gray-500 leading-relaxed">{curr.description}</p>
@@ -367,33 +324,17 @@ export default function Services() {
                                 <div className="absolute inset-0 bg-gray-200 rounded-full" />
                                 <div className="absolute left-0 top-0 h-px bg-[#1a3d4f] rounded-full" style={{ width: "35%" }} />
                             </div>
-                            <ArrowBtn />
+                            <ArrowBtn slug={curr.slug} />
                         </div>
                     </div>
-
-                    <div
-                        className="bg-white rounded-2xl px-5 py-4 flex items-center gap-3 cursor-pointer"
-                        onClick={() => goTo(nextIdx)}
-                    >
-                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                            {next.icon(false)}
-                        </div>
+                    <div className="bg-white rounded-2xl px-5 py-4 flex items-center gap-3 cursor-pointer" onClick={() => goTo(nextIdx)}>
+                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">{next.icon(false)}</div>
                         <span className="text-sm text-gray-400 font-medium">{next.title}</span>
                     </div>
-
                     <div className="flex items-center justify-center gap-3 pt-2">
                         {services.map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => goTo(i)}
-                                style={{
-                                    width: i === active ? 28 : 8, height: 8,
-                                    borderRadius: 999,
-                                    background: i === active ? "#1a3d4f" : "#d1d5db",
-                                    border: "none", cursor: "pointer",
-                                    transition: "all 0.3s ease",
-                                }}
-                            />
+                            <button key={i} onClick={() => goTo(i)}
+                                style={{ width: i === active ? 28 : 8, height: 8, borderRadius: 999, background: i === active ? "#1a3d4f" : "#d1d5db", border: "none", cursor: "pointer", transition: "all 0.3s ease" }} />
                         ))}
                     </div>
                 </div>

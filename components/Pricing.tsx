@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 import AnimatedButton from "./AnimatedButton";
 
 const plans = [
@@ -79,6 +83,43 @@ function CheckIcon({ featured }: { featured: boolean }) {
   );
 }
 
+// Opposite of AnimatedButton: white bg + black text, black span slides in from left on hover
+function FeaturedBtn() {
+  const controls = useAnimation();
+  const [hovered, setHovered] = useState(false);
+
+  const handleEnter = async () => {
+    setHovered(true);
+    await controls.start({ x: "0%", transition: { duration: 0.35, ease: [0.4, 0, 0.2, 1] } });
+  };
+
+  const handleLeave = async () => {
+    setHovered(false);
+    await controls.start({ x: "-100%", transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } });
+  };
+
+  return (
+    <button
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+      className="relative overflow-hidden w-full py-3 bg-white text-sm font-semibold rounded-xl border border-white"
+    >
+      <motion.span
+        initial={{ x: "-100%" }}
+        animate={controls}
+        className="absolute inset-0 bg-black rounded-xl"
+        style={{ zIndex: 0 }}
+      />
+      <span
+        className="relative z-10 transition-colors duration-300 flex items-center justify-center"
+        style={{ color: hovered ? "#fff" : "#000" }}
+      >
+        Get Started
+      </span>
+    </button>
+  );
+}
+
 export default function Pricing() {
   return (
     <section className="w-full py-14 lg:py-20 bg-white">
@@ -97,8 +138,8 @@ export default function Pricing() {
               className={[
                 "rounded-2xl flex flex-col overflow-hidden",
                 plan.featured
-                  ? "bg-[#1a3d4f] text-white shadow-2xl scale-[1.03] z-10"
-                  : "bg-[#e8e5de] text-gray-900 shadow-md",
+                  ? "bg-[#1a3d4f] text-white shadow-2xl scale-[1.03] z-10 border-t-4 border-t-white/20"
+                  : "bg-[#e8e5de] text-gray-900 shadow-md border-t-4 border-t-[#1a3d4f]",
               ].join(" ")}
             >
               {/* Top section */}
@@ -142,9 +183,10 @@ export default function Pricing() {
                 </div>
 
                 {/* CTA Button */}
-                <AnimatedButton className="w-full py-3 rounded-xl">
-                  Get Started
-                </AnimatedButton>
+                {plan.featured
+                  ? <FeaturedBtn />
+                  : <AnimatedButton className="w-full py-3 rounded-xl">Get Started</AnimatedButton>
+                }
               </div>
 
               {/* Services box */}
